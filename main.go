@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 func main() {
@@ -18,7 +19,9 @@ func main() {
 		}
 		log.Printf("rec req:%v, body:%s.", req.RequestURI, body)
 
+		now := time.Now()
 		resp := map[string]interface{}{
+			"time":        now,
 			"method":      req.Method,
 			"proto":       req.Proto,
 			"request_uri": req.RequestURI,
