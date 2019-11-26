@@ -7,17 +7,16 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
 )
 
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		log.Printf("rec req:%v", req.RequestURI)
 		var body string
 		if bs, err := ioutil.ReadAll(req.Body); err == nil {
 			body = string(bs)
 		}
+		log.Printf("rec req:%v, body:%s.", req.RequestURI, body)
 
 		resp := map[string]interface{}{
 			"method":      req.Method,
